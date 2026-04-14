@@ -43,7 +43,7 @@ class _DashboardState extends State<Dashboard> {
                     style: TextStyle(fontSize: 35, color: Colors.black),
                   ),
                   Spacer(),
-                  IconButton(
+                  IconButton.filledTonal(
                     iconSize: 30,
                     color: Color(0xFF008080),
                     onPressed: () {
@@ -54,6 +54,19 @@ class _DashboardState extends State<Dashboard> {
                       });
                     },
                     icon: FaIcon(FontAwesomeIcons.plusCircle),
+                  ),
+                  SizedBox(width: 10),
+                  IconButton.filledTonal(
+                    iconSize: 30,
+                    color: Color(0xFFFF3131),
+                    onPressed: () {
+                      setState(() {
+                        counter = 0;
+                        counterbajurumah = 0;
+                        counterbajubola = 0;
+                      });
+                    },
+                    icon: FaIcon(FontAwesomeIcons.refresh),
                   ),
                 ],
               ),
