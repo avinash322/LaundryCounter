@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:laundry_counter/addClothes.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -12,8 +13,15 @@ class _DashboardState extends State<Dashboard> {
   int counter = 0;
   int counterbajurumah = 0;
   int counterbajubola = 0;
+  int countercelanarumah = 0;
+  int counterkemejakantor = 0;
+  int countercelanakantor = 0;
+  int counterkemejaputih = 0;
+  int counterbatik = 0;
+
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -47,11 +55,15 @@ class _DashboardState extends State<Dashboard> {
                     iconSize: 30,
                     color: Color(0xFF008080),
                     onPressed: () {
-                      setState(() {
-                        counter = 0;
-                        counterbajurumah = 0;
-                        counterbajubola = 0;
-                      });
+                      showModalBottomSheet<void>(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return BottomSheetContent(
+                            screenHeight: screenHeight * 90 / 100,
+                          );
+                        },
+                      );
                     },
                     icon: FaIcon(FontAwesomeIcons.plusCircle),
                   ),
@@ -71,6 +83,106 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
               SizedBox(height: 20),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    // 👕 Icon
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade50,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.asset(
+                        "assets/images/shirts.png",
+                        width: 40,
+                        height: 40,
+                      ),
+                    ),
+
+                    const SizedBox(width: 12),
+
+                    // 🏷️ Nama item
+                    const Expanded(
+                      child: Text(
+                        "Shirt",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+
+                    // ➖ Button
+                    GestureDetector(
+                      onTap: () {
+                        if (counterbajurumah > 0) {
+                          setState(() {
+                            counterbajurumah--;
+                            counter--;
+                          });
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.remove, size: 18),
+                      ),
+                    ),
+
+                    const SizedBox(width: 10),
+
+                    // 🔢 Counter
+                    Text(
+                      "$counterbajurumah",
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(width: 10),
+
+                    // ➕ Button
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          counterbajurumah++;
+                          counter++;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 8),
                 padding: const EdgeInsets.all(12),
