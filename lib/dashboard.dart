@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:laundry_counter/addClothesModal.dart';
 import 'package:laundry_counter/components/laundryCard.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -16,11 +17,27 @@ class _DashboardState extends State<Dashboard> {
   final List<Map<String, dynamic>> pakaianList = [
     {'label': 'Baju Rumah', 'image': 'assets/images/shirts.png', 'count': 0},
     {'label': 'Baju Bola', 'image': 'assets/images/football.png', 'count': 0},
-    {'label': 'Celana Rumah', 'image': 'assets/images/shirts.png', 'count': 0},
-    {'label': 'Kemeja Kantor', 'image': 'assets/images/shirts.png', 'count': 0},
-    {'label': 'Celana Kantor', 'image': 'assets/images/shirts.png', 'count': 0},
-    {'label': 'Kemeja Putih', 'image': 'assets/images/shirts.png', 'count': 0},
-    {'label': 'Batik', 'image': 'assets/images/shirts.png', 'count': 0},
+    {
+      'label': 'Celana Rumah',
+      'image': 'assets/images/celana_rumah.png',
+      'count': 0,
+    },
+    {
+      'label': 'Kemeja Kantor',
+      'image': 'assets/images/kemeja_kantor.png',
+      'count': 0,
+    },
+    {
+      'label': 'Celana Kantor',
+      'image': 'assets/images/celana_kantor.png',
+      'count': 0,
+    },
+    {
+      'label': 'Kemeja Putih',
+      'image': 'assets/images/kemeja_putih.png',
+      'count': 0,
+    },
+    {'label': 'Batik', 'image': 'assets/images/batik.png', 'count': 0},
   ];
 
   @override
@@ -130,7 +147,22 @@ class _DashboardState extends State<Dashboard> {
         child: SizedBox(
           height: 55,
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              String formattedList = pakaianList
+                  .where((item) => item['count'] > 0)
+                  .map((item) {
+                    counter += item['count'] as int;
+                    return "${item['label']}: ${item['count']}";
+                  })
+                  .join("\n");
+
+              final message1 = Uri.encodeComponent("Baju total: $counter\n");
+              final message2 = Uri.encodeComponent("List:\n$formattedList");
+
+              final url = "https://wa.me/?text=$message1$message2";
+              // print(url);
+              launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+            },
             icon: const FaIcon(
               FontAwesomeIcons.whatsapp,
               color: Colors.white,

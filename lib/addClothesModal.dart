@@ -20,12 +20,15 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
   List<Map<String, dynamic>> get items => [
     {'label': 'Sweater', 'image': "assets/images/hoodie.png"},
     {'label': 'Jacket', 'image': "assets/images/jacket.png"},
-    {'label': 'Jeans', 'image': "assets/images/hoodie.png"},
-    {'label': 'Topi', 'image': "assets/images/hoodie.png"},
-    {'label': 'Kaos Polo', 'image': "assets/images/hoodie.png"},
-    {'label': 'Sprei', 'image': "assets/images/hoodie.png"},
-    {'label': 'Selimut', 'image': "assets/images/hoodie.png"},
-    {'label': 'Celana Pendek Pergi', 'image': "assets/images/hoodie.png"},
+    {'label': 'Jeans', 'image': "assets/images/jeans.png"},
+    {'label': 'Topi', 'image': "assets/images/topi.png"},
+    {'label': 'Kaos Polo', 'image': "assets/images/polo.png"},
+    {'label': 'Sprei', 'image': "assets/images/sprei.png"},
+    {'label': 'Selimut', 'image': "assets/images/selimut.png"},
+    {
+      'label': 'Celana Pendek Pergi',
+      'image': "assets/images/celana_pendek_pergi.png",
+    },
     {'label': 'Tambah Jenis', 'image': "assets/images/laundry.png"},
   ];
 
