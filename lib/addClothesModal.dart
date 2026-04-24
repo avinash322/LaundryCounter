@@ -131,7 +131,7 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                                     setState(() {
                                       itemSelected.add({
                                         'label': namaController.text,
-                                        'image': "assets/images/hoodie.png",
+                                        'image': "assets/images/laundry.png",
                                       });
                                     });
                                     widget.onTambahJenis(itemSelected);

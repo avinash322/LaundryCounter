@@ -151,7 +151,6 @@ class _DashboardState extends State<Dashboard> {
               String formattedList = pakaianList
                   .where((item) => item['count'] > 0)
                   .map((item) {
-                    counter += item['count'] as int;
                     return "${item['label']}: ${item['count']}";
                   })
                   .join("\n");
